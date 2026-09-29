@@ -71,7 +71,7 @@ If the repository is named `YOUR-USERNAME.github.io`, the site URL is instead `h
 6. Confirm the accuracy and privacy statements.
 7. Download PNG/SVG/JSON or publish to the repository.
 
-For best OCR results, use a tightly cropped, upright screenshot with high contrast and at least 1200 pixels on its longest edge. Pocket Medicine is copyrighted material: process only material you are authorized to use, do not publish the source screenshot, and ensure the infographic is an original, appropriately attributed transformation.
+For best OCR results, use a tightly cropped, upright screenshot with high contrast and at least 1200 pixels on its longest edge. Medical reference material may be copyrighted: process only material you are authorized to use, do not publish the source screenshot, and ensure the infographic is an original, appropriately attributed transformation.
 
 ## Configure safe GitHub publishing
 
