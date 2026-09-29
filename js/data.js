@@ -1,0 +1,62 @@
+(function () {
+  const sample = {
+    version: 1,
+    title: "Vitamin B12 Deficiency",
+    subtitle: "Recognition, confirmation & clinical clues",
+    layout: "clinical-grid",
+    theme: "sage",
+    updated: "September 2026",
+    sections: [
+      {
+        heading: "Recognize the pattern",
+        icon: "blood",
+        accent: "coral",
+        items: [
+          "Macrocytic, megaloblastic anemia",
+          "Macro-ovalocytes & hypersegmented neutrophils",
+          "Neurologic findings may occur without anemia"
+        ]
+      },
+      {
+        heading: "Who is at risk?",
+        icon: "stomach",
+        accent: "gold",
+        items: [
+          "Pernicious anemia or impaired intrinsic factor",
+          "Gastric / ileal disease or surgery",
+          "Vegan diet, metformin or acid suppression"
+        ]
+      },
+      {
+        heading: "Confirm deficiency",
+        icon: "lab",
+        accent: "blue",
+        items: [
+          "Check CBC, vitamin B12 and folate",
+          "B12 <200–250 pg/mL is commonly subnormal",
+          "If B12 is 150–399 pg/mL, check methylmalonic acid"
+        ]
+      },
+      {
+        heading: "B12 vs folate",
+        icon: "compare",
+        accent: "sage",
+        items: [
+          "B12: methylmalonic acid ↑ + homocysteine ↑",
+          "Folate: homocysteine ↑; methylmalonic acid normal",
+          "Renal insufficiency can also elevate MMA"
+        ]
+      }
+    ],
+    callout: "Do not treat presumed folate deficiency before excluding vitamin B12 deficiency—neurologic injury can progress despite hematologic improvement.",
+    sources: [
+      { label: "NIH ODS — Vitamin B12 Fact Sheet for Health Professionals", url: "https://ods.od.nih.gov/factsheets/Vitaminb12-HealthProfessional/" },
+      { label: "MSD Manual Professional — Vitamin B12 Deficiency", url: "https://www.msdmanuals.com/professional/nutritional-disorders/vitamin-deficiency-dependency-and-toxicity/vitamin-b12-deficiency" }
+    ],
+    note: "For education only · Verify local guidance · Not medical advice"
+  };
+
+  window.MedCanvas = window.MedCanvas || {};
+  window.MedCanvas.sample = sample;
+  window.MedCanvas.cloneSample = () => JSON.parse(JSON.stringify(sample));
+})();
