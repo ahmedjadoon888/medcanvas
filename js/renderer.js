@@ -108,7 +108,7 @@
       <circle cx="1003" cy="82" r="190" fill="${palette.soft}"/>
       <circle cx="1028" cy="82" r="126" fill="none" stroke="${palette.ink}" stroke-opacity=".09" stroke-width="2"/>
       <path d="M0 0h18v286H0z" fill="${palette.coral}"/>
-      <text x="70" y="72" fill="${palette.coral}" font-family="Manrope,Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="3">CLINICAL SNAPSHOT</text>
+      <text x="70" y="72" fill="${palette.coral}" font-family="Manrope,Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="3">MEDICAL INFOGRAPHIC</text>
       <text x="1010" y="72" text-anchor="end" fill="${palette.ink}" font-family="DM Sans,Arial,sans-serif" font-size="15" font-weight="700">${esc(data.updated || "")}</text>
       <text x="70" y="171" fill="${palette.ink}" font-family="Manrope,Arial,sans-serif" font-size="${titleSize}" font-weight="800" letter-spacing="-3">${titleLines.map((line, i) => `<tspan x="70" dy="${i ? 67 : 0}">${esc(line)}</tspan>`).join("")}</text>
       ${textLines(data.subtitle || "", 73, titleLines.length > 1 ? 323 : 251, 59, 31, `fill="#597576" font-family="DM Sans,Arial,sans-serif" font-size="24" font-weight="500"`, 2)}
