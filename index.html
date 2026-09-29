@@ -3,19 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Turn medical reference screenshots into reviewable, deterministic infographics.">
-  <meta name="theme-color" content="#0c3b3e">
-  <title>MedCanvas — Medical infographic studio</title>
+  <meta name="description" content="MedCanvas is a curated collection of clear, evidence-informed medical infographics.">
+  <meta name="theme-color" content="#123d3c">
+  <title>MedCanvas — Medical infographics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script defer src="js/data.js"></script>
-  <script defer src="js/adapters/local-heuristic.js"></script>
   <script defer src="js/renderer.js"></script>
-  <script defer src="js/github.js"></script>
-  <script defer src="js/app.js"></script>
+  <script defer src="js/gallery.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -23,182 +19,70 @@
       <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
       <span>med<span>canvas</span></span>
     </a>
-    <nav aria-label="Primary navigation">
-      <a href="#studio">Studio</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#safety">Safety</a>
-    </nav>
-    <a class="header-cta" href="#studio">Create infographic <span>↗</span></a>
+    <nav aria-label="Primary navigation"><a href="#collection">Collection</a><a href="#about">About</a></nav>
   </header>
 
   <main id="top">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow"><span></span> Open-source medical visualizer</p>
-        <h1>Medical references,<br><em>made visual.</em></h1>
-        <p class="hero-lede">Turn a medical reference image into a precise, editable infographic. Your wording stays deterministic. Your review stays in control.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#studio">Start creating <span>→</span></a>
-          <a class="text-link" href="#how-it-works"><span class="play">▶</span> See how it works</a>
-        </div>
-        <div class="trust-row">
-          <span>100% browser-based</span>
-          <span>No patient data uploaded</span>
-          <span>Free to host</span>
-        </div>
+        <p class="eyebrow"><span></span> Medical knowledge, made visual</p>
+        <h1>Clearer medicine.<br><em>One visual at a time.</em></h1>
+        <p class="hero-lede">A personal collection of carefully reviewed medical infographics designed for fast, focused learning.</p>
+        <a class="button" href="#collection">Explore the collection <span>↓</span></a>
+        <div class="hero-notes" aria-label="Collection principles"><span>Evidence-informed</span><span>Deterministic text</span><span>Built for learning</span></div>
       </div>
-      <div class="hero-art" aria-label="Preview of a B12 deficiency infographic">
-        <div class="orbit orbit-one"></div>
-        <div class="orbit orbit-two"></div>
-        <div class="mini-card mini-card-left"><b>02</b><span>clinical review</span></div>
-        <div class="mini-card mini-card-right"><span>Deterministic text</span><b>✓</b></div>
-        <div class="hero-sheet" id="hero-sheet"></div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-card"><div id="featured-visual"></div></div>
+        <div class="floating-label label-one"><b>01</b><span>Curated collection</span></div>
+        <div class="floating-label label-two"><span>Reviewed visual</span><b>✓</b></div>
       </div>
     </section>
 
-    <section class="process" id="how-it-works" aria-label="How it works">
-      <article><b>01</b><div><h3>Upload</h3><p>Add a screenshot or paste source text.</p></div></article>
-      <span class="process-arrow">→</span>
-      <article><b>02</b><div><h3>Structure</h3><p>OCR is organized into editable sections.</p></div></article>
-      <span class="process-arrow">→</span>
-      <article><b>03</b><div><h3>Review</h3><p>Verify every claim and source.</p></div></article>
-      <span class="process-arrow">→</span>
-      <article><b>04</b><div><h3>Publish</h3><p>Export or send it to GitHub Pages.</p></div></article>
-    </section>
-
-    <section class="studio-section" id="studio">
+    <section class="collection" id="collection">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow"><span></span> Infographic studio</p>
-          <h2>From screenshot to shareable visual.</h2>
-        </div>
-        <p>Everything below runs locally in your browser. OCR input and access tokens are not sent to this site.</p>
+        <div><p class="eyebrow"><span></span> The collection</p><h2>Medical topics,<br>designed for recall.</h2></div>
+        <p>Browse the latest visuals. Open any infographic to read it at full size or download a copy.</p>
       </div>
-
-      <div class="studio-shell">
-        <div class="editor-pane">
-          <div class="stepper" aria-label="Creation progress">
-            <button class="step is-active" data-step="1"><span>1</span>Source</button>
-            <i></i>
-            <button class="step" data-step="2"><span>2</span>Content</button>
-            <i></i>
-            <button class="step" data-step="3"><span>3</span>Review</button>
-          </div>
-
-          <section class="step-panel" data-panel="1">
-            <div class="panel-intro"><span>01</span><div><h3>Add your source</h3><p>Upload a clear screenshot or paste the text directly.</p></div></div>
-            <label class="drop-zone" id="drop-zone" for="image-input">
-              <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp">
-              <span class="upload-icon" aria-hidden="true">↑</span>
-              <strong>Drop a screenshot here</strong>
-              <span>PNG, JPG or WebP · processed on this device</span>
-              <img id="upload-preview" alt="Selected source preview">
-            </label>
-            <div class="source-separator"><span>or paste source text</span></div>
-            <label class="field-label" for="source-text">Source text</label>
-            <textarea id="source-text" rows="8" placeholder="Paste a section from your reference here…"></textarea>
-            <div id="ocr-status" class="status-line" role="status" aria-live="polite"></div>
-            <button class="button button-primary full" id="extract-button">Extract &amp; structure <span>→</span></button>
-            <button class="button button-quiet full" id="use-sample-button">Load B12 sample instead</button>
-          </section>
-
-          <section class="step-panel" data-panel="2" hidden>
-            <div class="panel-intro"><span>02</span><div><h3>Shape the content</h3><p>Edit the words that will be rendered exactly as shown.</p></div></div>
-            <div class="two-fields">
-              <label><span>Title</span><input id="title-input" maxlength="48"></label>
-              <label><span>Subtitle</span><input id="subtitle-input" maxlength="80"></label>
-            </div>
-            <div class="two-fields compact-fields">
-              <label><span>Layout</span><select id="layout-input"><option value="clinical-grid">Clinical grid</option><option value="pathway">Pathway</option><option value="compare">Comparison</option></select></label>
-              <label><span>Palette</span><select id="theme-input"><option value="sage">Sage &amp; coral</option><option value="cobalt">Cobalt &amp; gold</option><option value="plum">Plum &amp; rose</option></select></label>
-            </div>
-            <div class="section-list-head"><span>Sections</span><button id="add-section" class="small-action">+ Add section</button></div>
-            <div id="sections-editor" class="sections-editor"></div>
-            <label class="stacked-field"><span>Sources <small>one per line</small></span><textarea id="sources-input" rows="4" placeholder="Title — URL"></textarea></label>
-            <div class="editor-actions">
-              <button class="button button-quiet" data-back="1">← Back</button>
-              <button class="button button-primary" id="to-review">Review visual <span>→</span></button>
-            </div>
-          </section>
-
-          <section class="step-panel" data-panel="3" hidden>
-            <div class="panel-intro"><span>03</span><div><h3>Clinical review</h3><p>Complete these checks before publishing.</p></div></div>
-            <div id="validation-results" class="validation-results"></div>
-            <label class="review-check"><input type="checkbox" id="review-confirm"><span><b>I reviewed every claim, value, unit and source.</b><small>This is a design tool, not a clinical validation service.</small></span></label>
-            <label class="review-check"><input type="checkbox" id="privacy-confirm"><span><b>The source contains no patient-identifying information.</b><small>Only publish material you are permitted to share.</small></span></label>
-            <div class="export-block">
-              <p>Download</p>
-              <div class="export-buttons">
-                <button class="button button-dark" id="download-png">PNG <span>↓</span></button>
-                <button class="button button-dark" id="download-svg">SVG <span>↓</span></button>
-                <button class="button button-quiet" id="download-json">JSON <span>↓</span></button>
-              </div>
-            </div>
-            <button class="button button-github full" id="open-publish"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.28-5.27-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18a10.98 10.98 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.71 5.39-5.29 5.68.42.36.79 1.06.79 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg> Publish to GitHub Pages</button>
-            <button class="button button-quiet full" data-back="2">← Continue editing</button>
-          </section>
-        </div>
-
-        <aside class="preview-pane">
-          <div class="preview-toolbar"><div><span class="live-dot"></span> Live preview</div><button id="zoom-preview" aria-label="Toggle large preview">⤢</button></div>
-          <div class="canvas-stage"><div id="infographic-preview"></div></div>
-          <div class="preview-meta"><span>1080 × 1350</span><span>Editable SVG</span><span>4:5 social</span></div>
-        </aside>
+      <div class="collection-tools">
+        <label class="search-box" for="gallery-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg><input id="gallery-search" type="search" placeholder="Search the collection" autocomplete="off"></label>
+        <span id="gallery-count" class="gallery-count" aria-live="polite"></span>
       </div>
+      <div id="gallery-status" class="gallery-status" role="status"><span class="loader" aria-hidden="true"></span><p>Loading the collection…</p></div>
+      <div id="gallery-grid" class="gallery-grid" hidden></div>
     </section>
 
-    <section class="gallery-section" id="gallery">
-      <div class="section-heading light-heading">
-        <div><p class="eyebrow"><span></span> Visual system</p><h2>Designed to be read,<br>not just seen.</h2></div>
-        <p>One structured data model can drive different editorial layouts. The typography is always rendered by code—never baked into an AI image.</p>
-      </div>
-      <div class="gallery-grid">
-        <article class="gallery-feature"><div id="gallery-b12"></div><footer><span><b>Vitamin B12 deficiency</b>Clinical grid</span><button data-load-sample>Open in studio →</button></footer></article>
-        <div class="gallery-side">
-          <article class="principle-card coral"><span>01</span><div class="principle-icon">Aa</div><h3>Deterministic type</h3><p>Numbers, doses and labels remain real text in every export.</p></article>
-          <article class="principle-card mint"><span>02</span><div class="principle-icon">⌁</div><h3>Modular layouts</h3><p>Swap palettes and structures without rewriting clinical content.</p></article>
-          <article class="quote-card"><p>“Make the right thing<br><em>the easy thing to see.</em>”</p><span>MedCanvas design principle</span></article>
-        </div>
-      </div>
-      <div id="published-gallery" class="published-gallery" hidden>
-        <div class="published-head"><h3>Published from this repository</h3><span>Synced from published/index.json</span></div>
-        <div id="published-grid" class="published-grid"></div>
-      </div>
-    </section>
-
-    <section class="safety-section" id="safety">
-      <div class="safety-copy"><p class="eyebrow"><span></span> Built-in guardrails</p><h2>Clarity without<br>false confidence.</h2><p>Medical communication deserves more than a polished surface. MedCanvas keeps the original wording visible, requires sources, and adds a deliberate human review gate.</p></div>
-      <div class="safety-list">
-        <article><span>01</span><div><h3>No silent rewriting</h3><p>OCR output and every infographic section are editable before rendering.</p></div></article>
-        <article><span>02</span><div><h3>Sources travel with the visual</h3><p>References and a “for education” label are embedded into each export.</p></div></article>
-        <article><span>03</span><div><h3>Human sign-off required</h3><p>Publishing stays locked until accuracy and privacy checks are confirmed.</p></div></article>
+    <section class="about" id="about">
+      <div><p class="eyebrow light"><span></span> About MedCanvas</p><h2>Useful at a glance.<br>Responsible in the details.</h2></div>
+      <div class="about-grid">
+        <article><b>01</b><h3>Readable by design</h3><p>Strong hierarchy and concise language make complex topics easier to review.</p></article>
+        <article><b>02</b><h3>Text stays exact</h3><p>Every word, number, and unit is rendered from structured data—not generated inside an image.</p></article>
+        <article><b>03</b><h3>Sources included</h3><p>Each visual carries its references and an educational-use reminder.</p></article>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer"><a class="brand footer-brand" href="#top"><span class="brand-mark"><i></i><i></i></span><span>med<span>canvas</span></span></a><p>Open-source educational tooling. Not medical advice.</p><a href="https://github.com/" target="_blank" rel="noreferrer">Built for GitHub Pages ↗</a></footer>
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>med<span>canvas</span></span></a>
+    <p>Independent medical education collection. Not medical advice.</p><span>© <span id="year"></span> MedCanvas</span>
+  </footer>
 
-  <dialog id="publish-dialog">
-    <form method="dialog" class="dialog-card" id="publish-form">
-      <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
-      <p class="eyebrow"><span></span> GitHub publisher</p>
-      <h2>Publish this visual</h2>
-      <p class="dialog-lede">The SVG and structured JSON will be committed to <code>published/</code>. The gallery index is updated automatically.</p>
-      <div class="two-fields">
-        <label><span>Repository owner</span><input id="github-owner" required autocomplete="off" placeholder="your-username"></label>
-        <label><span>Repository name</span><input id="github-repo" required autocomplete="off" placeholder="medcanvas"></label>
+  <dialog id="visual-dialog">
+    <div class="dialog-shell">
+      <button class="dialog-close" type="button" aria-label="Close infographic">×</button>
+      <div class="dialog-art" id="dialog-art"></div>
+      <div class="dialog-panel">
+        <p class="eyebrow"><span></span> MedCanvas infographic</p><h2 id="dialog-title"></h2>
+        <p id="dialog-subtitle" class="dialog-subtitle"></p><div id="dialog-sources" class="dialog-sources"></div>
+        <div class="dialog-actions">
+          <button class="download-button primary" id="download-png">Download PNG <span>↓</span></button>
+          <button class="download-button" id="download-svg">Download SVG <span>↓</span></button>
+          <button class="copy-button" id="copy-link">Copy link</button>
+        </div>
+        <p class="dialog-note">For education only. Verify local guidance. Not medical advice.</p>
       </div>
-      <div class="two-fields">
-        <label><span>Branch</span><input id="github-branch" value="main" required></label>
-        <label><span>File slug</span><input id="github-slug" required pattern="[a-z0-9-]+"></label>
-      </div>
-      <label class="stacked-field"><span>Fine-grained access token</span><input id="github-token" type="password" required autocomplete="off" placeholder="github_pat_…"><small>Used for this publish only. Never saved to local storage.</small></label>
-      <div class="token-note"><b>Minimum permission:</b> repository “Contents: Read and write.” Use a short expiration and limit it to this repository.</div>
-      <div id="publish-status" class="status-line" role="status" aria-live="polite"></div>
-      <div class="dialog-actions"><button class="button button-quiet" type="button" data-close-dialog>Cancel</button><button class="button button-github" id="publish-button" type="submit">Commit to repository <span>→</span></button></div>
-    </form>
+    </div>
   </dialog>
-
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

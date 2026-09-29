@@ -1,38 +1,47 @@
-# Set up MedCanvas in ChatGPT
+# Use MedCanvas from the ChatGPT iPhone app
 
-Use a **plugin**, not a separate bot or ordinary chat. The plugin is called **MedCanvas Mobile**. It uses the official **GitHub app** only for publishing to the existing repository.
+Use the private **MedCanvas Mobile** plugin. The public website is your gallery; it is not where you upload or create infographics.
 
-## One-time setup on ChatGPT web or desktop
+## One-time setup
 
-1. Open **Plugins** and install/connect **GitHub**.
-2. When GitHub asks for repository access, select only `ahmedjadoon888/medcanvas` if that option is available.
-3. Start a new ChatGPT conversation.
-4. Type `@Plugin Creator` and select **Plugin Creator**.
-5. Attach `medcanvas-mobile-plugin.zip` from the `outputs` folder.
-6. Paste this message:
+1. In ChatGPT, open **Plugins** and connect the official **GitHub** app.
+2. Limit the GitHub connection to `ahmedjadoon888/medcanvas` if GitHub offers that choice.
+3. Install the private **MedCanvas Mobile** plugin package.
+4. Confirm its GitHub connection shows **Connected**.
+5. Keep the plugin private.
 
-   > Create a private plugin named MedCanvas Mobile from the attached package. Keep its medical privacy and accuracy checks. Include the connected GitHub app so it can write only to ahmedjadoon888/medcanvas on the main branch. The workflow must accept an iPhone screenshot or camera image, create structured deterministic infographic data, update published/index.json, and return https://ahmedjadoon888.github.io/medcanvas/. Do not upload the source image. Keep the plugin private.
+## Everyday iPhone workflow
 
-7. Follow Plugin Creator's prompts, review the requested GitHub access, and finish creating/installing the plugin.
-8. Start a **new** chat after installation.
-
-If **Plugin Creator** is missing, your account or workspace has not enabled plugin creation. In that case, use the MedCanvas website directly for now. Do not create a custom GPT unless plugin creation remains unavailable.
-
-## Everyday use on iPhone
-
-1. Open the ChatGPT app and start a new chat.
+1. Open the ChatGPT iPhone app and start a new chat.
 2. Type `@MedCanvas Mobile` and select it under **Plugins**.
-3. Tap **+** and choose a medical reference screenshot or take a camera photo.
+3. Tap **+** and choose the screenshot, or take a camera photo.
 4. Send: **Make and publish this infographic.**
-5. Review any safety warning or GitHub approval. MedCanvas returns the published gallery link.
+5. Review any privacy, uncertainty, or medical-accuracy warning.
+6. Approve the GitHub write if ChatGPT asks.
+7. Wait for a response that says **Published and verified**, includes a commit identifier, and provides a direct gallery link.
 
-Do not upload images containing a patient name, date of birth, MRN, face, barcode, or other identifying information. The plugin publishes structured text and citations—not the screenshot.
+If the response says only **Prepared but not published**, no GitHub commit occurred. Reconnect GitHub or retry in a new chat with `@MedCanvas Mobile`. Do not rely on a message that merely says “live” without a commit identifier.
+
+## Where the result appears
+
+Gallery:
+
+<https://ahmedjadoon888.github.io/medcanvas/>
+
+Direct post links look like:
+
+```text
+https://ahmedjadoon888.github.io/medcanvas/?item=topic-slug
+```
+
+GitHub Pages can take a short time to show a verified commit.
+
+## Safety
+
+Do not upload an image containing a patient name, date of birth, MRN, face, barcode, address, encounter detail, or other identifying information. MedCanvas publishes only structured infographic text and citations—never the source screenshot.
 
 ## What each name means
 
-- **MedCanvas Mobile**: your private workflow plugin.
-- **GitHub**: the official connection the plugin uses to publish.
-- **Plugin Creator**: the ChatGPT tool used once to create/install MedCanvas Mobile.
-- **Custom GPT / bot**: not needed for the recommended setup.
-
-Official OpenAI instructions: [Plugins](https://learn.chatgpt.com/docs/plugins) and [Build plugins](https://learn.chatgpt.com/docs/build-plugins).
+- **MedCanvas Mobile**: your private creation and publishing workflow.
+- **GitHub**: the connected app that writes the two approved JSON files.
+- **MedCanvas website**: your public, read-only medical infographic gallery.
