@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "title": "Dysphagia: Pattern & Workup",
+  "subtitle": "Localize symptoms, separate obstruction from motility & choose the next test",
+  "layout": "pathway",
+  "theme": "cobalt",
+  "updated": "September 2026",
+  "sections": [
+    {
+      "heading": "Localize first",
+      "icon": "clinical",
+      "accent": "blue",
+      "items": [
+        "Oropharyngeal: trouble initiating a swallow, with cough, drooling, dysarthria or nasal regurgitation.",
+        "Esophageal: food feels stuck after swallowing; evaluation then focuses on structural and motor causes."
+      ]
+    },
+    {
+      "heading": "Use the food pattern",
+      "icon": "compare",
+      "accent": "gold",
+      "items": [
+        "Solids more than liquids suggests a structural narrowing: ring, web, stricture, tumor or EoE.",
+        "Solids and liquids suggests a motility disorder such as achalasia, spasm or hypercontractile esophagus."
+      ]
+    },
+    {
+      "heading": "Choose the next test",
+      "icon": "pathway",
+      "accent": "sage",
+      "items": [
+        "Oropharyngeal symptoms: modified barium swallow plus speech-language/ENT assessment as appropriate.",
+        "Esophageal dysphagia: upper endoscopy is central; barium esophagram can provide complementary anatomy.",
+        "If endoscopy is unrevealing and obstruction persists, high-resolution manometry evaluates motor disorders."
+      ]
+    },
+    {
+      "heading": "EoE: current update",
+      "icon": "stomach",
+      "accent": "coral",
+      "items": [
+        "Diagnosis: esophageal dysfunction plus >=15 eosinophils/hpf, after evaluating other causes of eosinophilia.",
+        "ACG 2025 advises >=6 targeted biopsies from 2 esophageal levels and standardized endoscopic assessment.",
+        "First-line options include PPI, swallowed topical steroid or empiric elimination diet; use shared decisions."
+      ]
+    }
+  ],
+  "callout": "Food impaction that cannot pass or be brought back up warrants emergency evaluation.",
+  "sources": [
+    {
+      "label": "ACG — Clinical Use of Esophageal Physiologic Testing",
+      "url": "https://webfiles.gi.org/links/virtgrandround/ACG_Clinical_Guidelines__EsophagealPhysiologicTesting.pdf"
+    },
+    {
+      "label": "ACG — Diagnosis and Management of Eosinophilic Esophagitis (2025)",
+      "url": "https://webfiles.gi.org/links/committees/DigitalCommsAndPubs/ACG-EOE-Guidelines-Highlights-2025.pdf"
+    },
+    {
+      "label": "ACG — Eosinophilic Esophagitis guideline review",
+      "url": "https://gi.org/journals-publications/ebgi/eluri_feb2025/"
+    },
+    {
+      "label": "ACG — Achalasia patient information",
+      "url": "https://gi.org/patients/patient-information/achalasia/"
+    }
+  ],
+  "note": "For education only · Verify local guidance · Not medical advice",
+  "review": {
+    "sourceType": "reference screenshot",
+    "uncertainties": [
+      "The source page's EoE treatment sequence was updated to reflect the 2025 ACG guideline rather than reproduced verbatim."
+    ],
+    "verifiedAt": "2026-09-29"
+  }
+}
