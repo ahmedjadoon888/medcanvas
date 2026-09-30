@@ -1,0 +1,15 @@
+{
+  "formatVersion": 2,
+  "kind": "illustrated-algorithm",
+  "repository": "ahmedjadoon888/medcanvas",
+  "branch": "main",
+  "topicPath": "published/<slug>.json",
+  "indexPath": "published/index.json",
+  "assetPath": "published/assets/<slug>-<sha256-first-12>.<png|jpg|webp>",
+  "maximumPages": 12,
+  "maximumDimension": 8192,
+  "maximumAssetBytes": 5242880,
+  "requiresApproval": true,
+  "requiresCommitAndReadback": true,
+  "sourceImageUploadAllowed": false
+}

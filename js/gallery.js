@@ -21,13 +21,16 @@
     status.innerHTML = `${loading ? '<span class="loader" aria-hidden="true"></span>' : ""}<p>${escapeHtml(message)}</p>`;
     $("#gallery-grid").hidden = true;
   }
+  function preview(item, eager = false) {
+    return MC.artwork.isIllustrated(item.data) ? MC.artwork.preview(item.data, item.manifest.slug, eager) : MC.renderer.render(item.data);
+  }
   function renderCards(list) {
     const grid = $("#gallery-grid"); $("#gallery-status").hidden = true; grid.hidden = false;
     $("#gallery-count").textContent = `${list.length} ${list.length === 1 ? "infographic" : "infographics"}`;
     if (!list.length) { grid.innerHTML = '<div class="empty-state">No infographics match that search.</div>'; return; }
     grid.innerHTML = list.map(item => `
       <button class="gallery-card" type="button" data-slug="${escapeHtml(item.manifest.slug)}" aria-label="Open ${escapeHtml(item.data.title)}">
-        <span class="gallery-art">${MC.renderer.render(item.data)}</span>
+        <span class="gallery-art">${preview(item)}</span>
         <span class="gallery-copy"><span><h3>${escapeHtml(item.data.title)}</h3><p>${escapeHtml(item.data.subtitle || "Medical infographic")}</p></span><b aria-hidden="true">↗</b></span>
       </button>`).join("");
   }
@@ -45,14 +48,17 @@
           const dataResponse = await fetch(`${path}?v=${Date.now()}`, { cache: "no-store" });
           if (!dataResponse.ok) return null;
           const data = await dataResponse.json();
-          if (!data || !data.title || !Array.isArray(data.sections) || data.sections.length < 2) return null;
+          if (!data || !data.title) return null;
+          if (MC.artwork.isIllustrated(data)) {
+            if (!MC.artwork.validate(data, entry.slug)) return null;
+          } else if (data.version === 2 || !Array.isArray(data.sections) || data.sections.length < 2) return null;
           return { manifest: entry, data };
         } catch (_) { return null; }
       }));
       items = loaded.filter(Boolean);
       if (!items.length) { setStatus("The collection is ready for its first infographic.", false); $("#gallery-count").textContent = "0 infographics"; return; }
       renderCards(items);
-      $("#featured-visual").innerHTML = MC.renderer.render(items[0].data);
+      $("#featured-visual").innerHTML = preview(items[0], true);
       const requested = new URLSearchParams(location.search).get("item");
       if (requested && items.some(item => item.manifest.slug === requested)) openItem(requested, false);
     } catch (error) { setStatus(error.message || "The collection could not be loaded. Please try again shortly.", false); }
@@ -60,7 +66,10 @@
   function openItem(slug, updateUrl = true) {
     activeItem = items.find(item => item.manifest.slug === slug); if (!activeItem) return;
     const { data } = activeItem;
-    $("#dialog-art").innerHTML = MC.renderer.render(data); $("#dialog-title").textContent = data.title; $("#dialog-subtitle").textContent = data.subtitle || "";
+    const illustrated = MC.artwork.isIllustrated(data);
+    $("#dialog-art").innerHTML = illustrated ? MC.artwork.full(data, slug) : MC.renderer.render(data);
+    $("#download-svg").hidden = illustrated;
+    $("#download-png").textContent = illustrated ? "Download image ↓" : "Download PNG ↓"; $("#dialog-title").textContent = data.title; $("#dialog-subtitle").textContent = data.subtitle || "";
     const sources = Array.isArray(data.sources) ? data.sources.filter(source => source && /^https?:\/\//i.test(source.url || "")) : [];
     $("#dialog-sources").innerHTML = sources.length ? `<h3>Sources</h3>${sources.map(source => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.label || source.url)} ↗</a>`).join("")}` : "";
     if (updateUrl) history.replaceState(null, "", `${location.pathname}?item=${encodeURIComponent(slug)}`);
@@ -73,7 +82,12 @@
   }
   function downloadSvg() { if (activeItem) download(`${slugify(activeItem.data.title)}.svg`, MC.renderer.render(activeItem.data), "image/svg+xml;charset=utf-8"); }
   async function downloadPng() {
-    if (!activeItem) return; const svg = MC.renderer.render(activeItem.data); await document.fonts?.ready;
+    if (!activeItem) return;
+    if (MC.artwork.isIllustrated(activeItem.data)) {
+      try { await MC.artwork.download(activeItem.data.artwork[0]); } catch (error) { toast(error.message); }
+      return;
+    }
+    const svg = MC.renderer.render(activeItem.data); await document.fonts?.ready;
     const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml;charset=utf-8" })); const image = new Image();
     image.onload = () => {
       const canvas = document.createElement("canvas"); canvas.width = 1080; canvas.height = 1350; canvas.getContext("2d").drawImage(image, 0, 0, 1080, 1350); URL.revokeObjectURL(url);
@@ -91,6 +105,13 @@
     $(".dialog-close").addEventListener("click", closeItem);
     $("#visual-dialog").addEventListener("click", event => { if (event.target === $("#visual-dialog")) closeItem(); });
     $("#visual-dialog").addEventListener("cancel", event => { event.preventDefault(); closeItem(); });
+    $("#dialog-art").addEventListener("click", async event => {
+      const button = event.target.closest("[data-page]");
+      if (!button || !activeItem || !MC.artwork.isIllustrated(activeItem.data)) return;
+      const art = activeItem.data.artwork[Number(button.dataset.page)];
+      if (!art) return;
+      try { await MC.artwork.download(art); } catch (error) { toast(error.message); }
+    });
     $("#download-svg").addEventListener("click", downloadSvg); $("#download-png").addEventListener("click", downloadPng);
     $("#copy-link").addEventListener("click", async () => { try { await navigator.clipboard.writeText(location.href); toast("Link copied."); } catch (_) { toast("Copy the address from your browser."); } });
   }

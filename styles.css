@@ -135,3 +135,12 @@ dialog::backdrop { background: rgba(9,33,32,.76); backdrop-filter: blur(6px); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+.approved-artwork { display: block; max-width: 100%; width: 100%; height: auto; object-fit: contain; }
+.gallery-art, #featured-visual { position: relative; }
+.page-count { position: absolute; right: 28px; bottom: 28px; padding: 6px 10px; border-radius: 20px; background: #173f40; color: white; font-size: 12px; font-weight: 700; }
+.artwork-pages { width: 100%; min-width: 0; display: grid; gap: 30px; }
+.artwork-page { margin: 0; width: 100%; }
+.artwork-page .approved-artwork { box-shadow: 0 12px 34px rgba(20,61,61,.12); }
+.artwork-page figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; font-size: 13px; color: #173f40; }
+.artwork-page figcaption a { margin-left: auto; }
+.artwork-download { padding: 8px 12px; border: 1px solid #173f40; border-radius: 8px; background: white; color: #173f40; cursor: pointer; font: inherit; }
