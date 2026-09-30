@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "title": "Dysphagia: A Practical Approach",
+  "subtitle": "Localize the problem, identify the pattern & choose the next test",
+  "layout": "pathway",
+  "theme": "cobalt",
+  "updated": "September 2026",
+  "sections": [
+    {
+      "heading": "Localize first",
+      "icon": "pathway",
+      "accent": "blue",
+      "items": [
+        "Oropharyngeal: difficulty initiating swallow, coughing, drooling or nasal regurgitation.",
+        "Esophageal: sensation of food sticking after swallowing; evaluate with EGD ± barium swallow."
+      ]
+    },
+    {
+      "heading": "Use the food pattern",
+      "icon": "stomach",
+      "accent": "gold",
+      "items": [
+        "Solids > liquids suggests structural disease: rings/webs, stricture, eosinophilic esophagitis or cancer.",
+        "Solids + liquids suggests a motility disorder; if endoscopy is unrevealing, proceed to manometry."
+      ]
+    },
+    {
+      "heading": "Motility clues",
+      "icon": "clinical",
+      "accent": "coral",
+      "items": [
+        "Intermittent symptoms ± chest pain: consider distal esophageal spasm or hypercontractile esophagus.",
+        "Progressive dysphagia: consider achalasia; hypomotility can occur with systemic disease."
+      ]
+    },
+    {
+      "heading": "Eosinophilic esophagitis — 2025 ACG",
+      "icon": "lab",
+      "accent": "sage",
+      "items": [
+        "Diagnosis: esophageal dysfunction + ≥15 eos/hpf on biopsy, after evaluating other causes.",
+        "First line: shared decision-making—PPI, swallowed topical steroid, or empiric elimination diet.",
+        "If diet chosen, start less restrictive (1-FED or 2-FED); assess response with endoscopy + biopsy."
+      ]
+    }
+  ],
+  "callout": "Food impaction or progressive dysphagia warrants prompt evaluation; dilation does not replace anti-inflammatory EoE therapy.",
+  "sources": [
+    {
+      "label": "ACG — Diagnosis and Management of Eosinophilic Esophagitis (2025)",
+      "url": "https://gi.org/journals-publications/ebgi/eluri_feb2025/"
+    },
+    {
+      "label": "ACG — EoE Guideline Highlights (2025)",
+      "url": "https://webfiles.gi.org/links/committees/DigitalCommsAndPubs/ACG-EOE-Guidelines-Highlights-2025.pdf"
+    }
+  ],
+  "note": "For education only · Verify local guidance · Not medical advice",
+  "review": {
+    "sourceType": "reference screenshot",
+    "uncertainties": [
+      "EoE treatment sequence updated to current ACG 2025 guidance rather than the older sequence in the reference."
+    ],
+    "verifiedAt": "2026-09-30"
+  }
+}
