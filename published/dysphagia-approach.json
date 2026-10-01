@@ -57,10 +57,11 @@
   ],
   "note": "For education only · Verify local guidance · Not medical advice",
   "review": {
-    "sourceType": "reference screenshot",
+    "revision": "draft-1",
+    "approvedAt": "2026-09-30T22:09:00-05:00",
+    "verifiedAt": "2026-09-30",
     "uncertainties": [
       "EoE treatment sequence updated to current ACG 2025 guidance rather than the older sequence in the reference."
-    ],
-    "verifiedAt": "2026-09-30"
+    ]
   }
 }
