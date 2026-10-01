@@ -1,14 +1,23 @@
 {
-  "formatVersion": 2,
-  "kind": "illustrated-algorithm",
+  "formatVersion": 3,
   "repository": "ahmedjadoon888/medcanvas",
   "branch": "main",
+  "defaultKind": "vector-infographic",
+  "supportedKinds": ["vector-infographic", "illustrated-algorithm"],
   "topicPath": "published/<slug>.json",
   "indexPath": "published/index.json",
-  "assetPath": "published/assets/<slug>-<sha256-first-12>.<png|jpg|webp>",
-  "maximumPages": 12,
-  "maximumDimension": 8192,
-  "maximumAssetBytes": 5242880,
+  "vectorPublishing": {
+    "requiresBinaryUpload": false,
+    "renderer": "client-side-svg",
+    "downloadFormats": ["svg", "png"]
+  },
+  "illustratedPublishing": {
+    "assetPath": "published/assets/<slug>-<sha256-first-12>.<png|jpg|webp>",
+    "maximumPages": 12,
+    "maximumDimension": 8192,
+    "maximumAssetBytes": 5242880,
+    "requiresBinaryUpload": true
+  },
   "requiresApproval": true,
   "requiresCommitAndReadback": true,
   "sourceImageUploadAllowed": false
